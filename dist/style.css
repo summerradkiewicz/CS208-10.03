@@ -11,38 +11,83 @@ body {
 h1 {
   font-family:'Courier New', Courier, monospace;
   font-weight: lighter;
-  text-decoration: overline underline;
+  border-top: 2px black solid;
+  border-bottom: 2px black solid;
 }
 
-/* Add New Task Bar */
+/* Add new task bar */
 .add-task {
-  background-color: antiquewhite;
-  padding: 1em;
+  min-width: 40vw;
+  padding: 2vh;
+  padding-left: 4vh;
   display: inline-flex;
+  align-items: center;
 }
 
+/* Background coloring stuff */
+.add-task, li {
+  background-color: antiquewhite;
+  border: 2px solid rgb(212, 190, 160);
+  border-radius: 5px;
+}
+
+/* Content in the add task bar */
 .add-task * {
-  margin: 1%;
-  /* display: inline; */
+  margin: 1vh;
+}
+.add-task input {
+  width: 60%;
+}
+#add-btn, .done-btn {
+  background-color: rgb(212, 190, 160);
+  border-style: none;
+  border-radius: 5px;
+  font-size: large;
+  font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s;
 }
 
-/* Task List */
+#add-btn:hover, .done-btn:hover {
+  background-color: rgb(241, 204, 153);
+}
+
+/* Task list */
 ol {
   line-height: 200%;
+  counter-reset: section;
+  list-style-type: none;
 }
 
-/* Tasks List Items */
+/* Tasks list items */
 li {
-  background-color: antiquewhite;
-  list-style-position: inside; /* makes numbers appear within background color */
-  margin: 2%;
+  display: flex; /* flex removes the numbered list, so I looked up a workaround */
+  flex-direction: row;
+  justify-content:space-between;
+  align-items: center;
+  line-height: 120%;
+  margin: 2vmin;
+  padding: 2vmin;
 }
 
+/* Add back in list item numbering */
+li::before {
+  background-color: rgb(212, 190, 160);
+  border-radius: 5px;
+  padding: 1%;
+  position: relative;
+  counter-increment: section;
+  content: counters(section, ".")
+}
+
+/* Task description */
 li span {
   padding: 1%;
+  max-width: 30vw;
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
 
-/* Remove Task Button */
+/* Remove task button */
 done-btn {
   position: relative;
   display: inline-block;
